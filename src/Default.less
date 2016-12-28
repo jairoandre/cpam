@@ -1,6 +1,165 @@
+@width: 1920px;
+@height: 1080px;
+
+
 .content {
+  transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
   position: relative;
-  width: 100%;
-  height: 100%;
-  background: red;
+  width: 1920px;
+  height: 1080px;
+  background-color: rgb(0, 0, 0);
+}
+
+.l-padd {
+  padding-left: 5px;
+}
+
+.t-center {
+  text-align: center;
+}
+
+@headerHeight: 80px;
+@halfHeaderHeight : @headerHeight / 2;
+
+.header {
+  position: absolute;
+  width: @width;
+  height: @headerHeight;
+  color: #fff;
+  font-size: 20px;
+}
+
+.h-header {
+  position: absolute;
+  height: @headerHeight;
+  line-height: @headerHeight;
+  top: 0px;
+}
+
+@wLeito: 120px;
+
+.h-leito {
+  width: @wLeito;
+  background: rgb(36, 60, 166);
+}
+
+@wAtendimento : 120px;
+@oAtendimento : @wLeito;
+
+.h-atendimento {
+  width: @wAtendimento;
+  left: @oAtendimento;
+  background: rgb(43, 72, 200);
+}
+
+@wPaciente: 400px;
+@oPaciente : @wAtendimento + @oAtendimento;
+
+.h-paciente {
+  width: @wPaciente;
+  left: @oPaciente;
+  background: rgb(47, 81, 230);
+}
+
+@wDataAlta: @wAltaMedica + @wAltaHospitalar;
+@oDataAlta: @wPaciente + @oPaciente;
+
+.h-data-alta {
+  width: @wDataAlta;
+  left: @oDataAlta;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background: rgb(145, 17, 17);
+}
+
+@wAltaMedica: 150px;
+@oAltaMedica: @wPaciente + @oPaciente;
+
+.h-alta-medica {
+  width: @wAltaMedica;
+  left: @oAltaMedica;
+  top: @halfHeaderHeight;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background-color: rgb(217, 70, 70);
+}
+
+@wAltaHospitalar: 150px;
+@oAltaHospitalar: @wAltaMedica + @oAltaMedica;
+
+.h-alta-hospitalar {
+  width: @wAltaHospitalar;
+  left: @oAltaHospitalar;
+  top: @halfHeaderHeight;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background-color: rgb(194, 42, 42);
+}
+
+@wMedicamentos: @wSuspensos + @wAgora + @wUrgente;
+@oMedicamentos: @wAltaHospitalar + @oAltaHospitalar;
+
+.h-medicamentos {
+  width: @wMedicamentos;
+  left: @oMedicamentos;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background-color: rgb(19, 74, 3);
+}
+
+@wMedItems : 200px;
+
+@wSuspensos : @wMedItems;
+@oSuspensos : @wAltaHospitalar + @oAltaHospitalar;
+
+.h-suspensos {
+  width: @wSuspensos;
+  left: @oSuspensos;
+  top: @halfHeaderHeight;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background: rgb(73, 176, 43);
+}
+
+@wAgora : @wMedItems;
+@oAgora : @wSuspensos + @oSuspensos;
+
+.h-agora {
+  width: @wAgora;
+  left: @oAgora;
+  top: @halfHeaderHeight;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background: rgb(56, 152, 28);
+}
+
+@wUrgente : @wMedItems;
+@oUrgente : @wAgora + @oAgora;
+
+.h-urgente {
+  width: @wUrgente;
+  left: @oUrgente;
+  top: @halfHeaderHeight;
+  height: @halfHeaderHeight;
+  line-height: @halfHeaderHeight;
+  background: rgb(39, 122, 15);
+}
+
+@wAlergia : @width - @wLeito - @wAtendimento - @wPaciente - @wDataAlta - @wMedicamentos;
+@oAlergia : @wUrgente + @oUrgente;
+
+.h-alergia {
+  width: @wAlergia;
+  left: @oAlergia;
+  background: rgb(221, 42, 154);
+}
+
+.rows {
+  position: absolute;
+  width: @width;
+  height: @height - @headerHeight;
+  top: @headerHeight;
+  color: #fff;
 }
