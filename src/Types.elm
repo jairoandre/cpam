@@ -1,26 +1,33 @@
 module Types exposing (..)
 
 import Http
-import Json.Decode as JD
 import Window
+import Time
+import Json.Decode as JD
+import Json.Decode.Pipeline as JDP
+import Scrollable exposing (..)
 
 
 type alias Model =
     { loading : Bool
     , scale : Float
-    , cpam : Maybe Cpam
+    , cpam : Maybe (ScrollableBag Paciente)
+    , message : Maybe String
+    , date : String
+    , counter : Int
     }
 
 
 initModel : Model
 initModel =
-    Model True 0.65 Nothing
+    Model True 0.65 Nothing Nothing "" 0
 
 
 type Msg
     = Loading
     | Scale Window.Size
     | FetchCpam
+    | TickTime Time.Time
     | ReceiveCpam (Result Http.Error Cpam)
 
 
@@ -39,6 +46,11 @@ decodeCpam =
         (JD.field "setores" (JD.list decodeSetor))
 
 
+cpamToScrollableBag : Cpam -> ScrollableBag Paciente
+cpamToScrollableBag cpam =
+    createScrollableBag (List.map setorToScrollable cpam.setores)
+
+
 type alias Setor =
     { nome : String
     , pacientes : List Paciente
@@ -52,6 +64,11 @@ decodeSetor =
         (JD.field "pacientes" (JD.list decodePaciente))
 
 
+setorToScrollable : Setor -> Scrollable Paciente
+setorToScrollable setor =
+    createScrollable setor.nome setor.pacientes
+
+
 type alias Paciente =
     { apto : String
     , atendimento : Int
@@ -61,17 +78,19 @@ type alias Paciente =
     , suspensos : List String
     , agora : List String
     , urgente : List String
+    , alergias : List String
     }
 
 
 decodePaciente : JD.Decoder Paciente
 decodePaciente =
-    JD.map8 Paciente
-        (JD.field "apto" JD.string)
-        (JD.field "atendimento" JD.int)
-        (JD.field "nome" JD.string)
-        (JD.field "altaMedica" JD.string)
-        (JD.field "altaHospitalar" JD.string)
-        (JD.field "suspensos" (JD.list JD.string))
-        (JD.field "agora" (JD.list JD.string))
-        (JD.field "urgente" (JD.list JD.string))
+    JDP.decode Paciente
+        |> JDP.required "apto" JD.string
+        |> JDP.required "atendimento" JD.int
+        |> JDP.required "nome" JD.string
+        |> JDP.optional "altaMedica" JD.string ""
+        |> JDP.optional "altaHospitalar" JD.string ""
+        |> JDP.required "suspensos" (JD.list JD.string)
+        |> JDP.required "agora" (JD.list JD.string)
+        |> JDP.required "urgente" (JD.list JD.string)
+        |> JDP.required "alergias" (JD.list JD.string)

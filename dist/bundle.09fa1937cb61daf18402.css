@@ -1,0 +1,274 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.red {
+  background: rgba(255, 0, 0, 0.1);
+}
+.content {
+  transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background-color: #15121f;
+}
+.zebra {
+  background: rgba(0, 0, 0, 0.2);
+}
+.l-padd {
+  padding-left: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tb-padd {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.t-center {
+  text-align: center;
+}
+.header {
+  position: absolute;
+  width: 1920px;
+  height: 80px;
+  color: #fff;
+  font-size: 30px;
+}
+.h-header {
+  position: absolute;
+  height: 80px;
+  line-height: 80px;
+  top: 0px;
+}
+.h-title {
+  width: 690px;
+  height: 40px;
+  line-height: 40px;
+  background: #112890;
+}
+.h-leito {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  top: 40px;
+  background: #243ca6;
+}
+.h-atendimento {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  top: 40px;
+  left: 120px;
+  background: #2b48c8;
+}
+.h-paciente {
+  width: 450px;
+  height: 40px;
+  line-height: 40px;
+  top: 40px;
+  left: 240px;
+  background: #2f51e6;
+}
+.h-data-alta {
+  width: 240px;
+  left: 690px;
+  height: 40px;
+  line-height: 40px;
+  background: #630000;
+}
+.h-alta-medica {
+  width: 120px;
+  left: 690px;
+  top: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #d94646;
+}
+.h-alta-hospitalar {
+  width: 120px;
+  left: 810px;
+  top: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #c22a2a;
+}
+.h-medicamentos {
+  width: 660px;
+  left: 930px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #134a03;
+}
+.h-suspensos {
+  width: 220px;
+  left: 930px;
+  top: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #49b02b;
+}
+.h-agora {
+  width: 220px;
+  left: 1150px;
+  top: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #38981c;
+}
+.h-urgente {
+  width: 220px;
+  left: 1370px;
+  top: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #277a0f;
+}
+.h-alergia {
+  width: 330px;
+  left: 1590px;
+  background: #dd752a;
+}
+.rows {
+  position: absolute;
+  width: 1920px;
+  height: 1000px;
+  top: 80px;
+  color: #fff;
+}
+.row {
+  position: absolute;
+  width: 1920px;
+  height: 100px;
+  line-height: 100px;
+}
+.row--0 {
+  top: 0px;
+}
+.row--1 {
+  top: 100px;
+}
+.row--2 {
+  top: 200px;
+}
+.row--3 {
+  top: 300px;
+}
+.row--4 {
+  top: 400px;
+}
+.row--5 {
+  top: 500px;
+}
+.row--6 {
+  top: 600px;
+}
+.row--7 {
+  top: 700px;
+}
+.row--8 {
+  top: 800px;
+}
+.row--9 {
+  top: 900px;
+}
+.row--10 {
+  top: 1000px;
+}
+.row--11 {
+  top: 1100px;
+}
+.row--12 {
+  top: 1200px;
+}
+.row--13 {
+  top: 1300px;
+}
+.row--14 {
+  top: 1400px;
+}
+.row--15 {
+  top: 1500px;
+}
+.row--16 {
+  top: 1600px;
+}
+.row--17 {
+  top: 1700px;
+}
+.row--18 {
+  top: 1800px;
+}
+.row--19 {
+  top: 1900px;
+}
+.row--20 {
+  top: 2000px;
+}
+.column {
+  position: absolute;
+  height: 100px;
+  line-height: 100px;
+  font-size: 25px;
+}
+.column--leito {
+  width: 120px;
+}
+.column--atendimento {
+  width: 120px;
+  left: 120px;
+}
+.column--paciente {
+  width: 450px;
+  left: 240px;
+  font-size: 30px;
+}
+.column--altaMedica {
+  width: 120px;
+  left: 690px;
+}
+.column--altaHospitalar {
+  width: 120px;
+  left: 810px;
+}
+.column--suspensos {
+  width: 220px;
+  left: 930px;
+}
+.column--agora {
+  width: 220px;
+  left: 1150px;
+}
+.column--urgente {
+  width: 220px;
+  left: 1370px;
+}
+.column--alergias {
+  width: 330px;
+  left: 1590px;
+  font-size: 20px;
+  line-height: 22px;
+  background: rgba(231, 111, 0, 0.1);
+}
+.column--datas {
+  background: rgba(32, 231, 0, 0.1);
+  font-size: 15px;
+  line-height: 17px;
+}
+.column--info {
+  background: rgba(0, 78, 231, 0.1);
+}
+.ul--items {
+  width: 100%;
+}
+.li--item {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.li--item::before {
+  content: '* ';
+}

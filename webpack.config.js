@@ -47,7 +47,7 @@ if (TARGET_ENV === 'development') {
 
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Magnetis - Development',
+        title: 'CPAM - Development',
         template: './src/index.ejs',
         filename: './index.html'
       }),
@@ -88,7 +88,7 @@ if (TARGET_ENV === 'production') {
         dry: true
       }),
       new HtmlWebpackPlugin({
-        title: 'Magnetis - Production',
+        title: 'CPAM - Production',
         template: './src/index.ejs',
         filename: './index.html'}),
       new ExtractTextPlugin('bundle.[hash].css')
