@@ -6,10 +6,6 @@ body {
   margin: 0;
 }
 
-.red {
-  background: rgba(255, 0, 0, 0.1);
-}
-
 .content {
   transform-origin: 0 0;
   -ms-transform-origin: 0 0;
@@ -18,6 +14,12 @@ body {
   width: 1920px;
   height: 1080px;
   background-color: rgb(21, 18, 31);
+  text-shadow: #222 2px 2px 5px;
+}
+
+.span--altaHospitalar {
+  background-color: red;
+  border-radius: 5px;
 }
 
 .zebra {
@@ -67,7 +69,7 @@ body {
   background: rgb(17, 40, 144);
 }
 
-@wLeito: 120px;
+@wLeito: 150px;
 
 .h-leito {
   width: @wLeito;
@@ -89,7 +91,7 @@ body {
   background: rgb(43, 72, 200);
 }
 
-@wPaciente: 450px;
+@wPaciente: 500px;
 @oPaciente : @wAtendimento + @oAtendimento;
 
 .h-paciente {
@@ -144,8 +146,8 @@ body {
 .h-medicamentos {
   width: @wMedicamentos;
   left: @oMedicamentos;
-  height: @halfHeaderHeight;
-  line-height: @halfHeaderHeight;
+  height: @headerHeight;
+  line-height: @headerHeight;
   background-color: rgb(19, 74, 3);
 }
 
@@ -202,6 +204,7 @@ body {
   height: @height - @headerHeight;
   top: @headerHeight;
   color: #fff;
+  cursor: none;
 }
 
 @rowHeight: 100px;
@@ -231,11 +234,13 @@ body {
 
 .column--leito {
   width: @wLeito;
+  font-size: 28px;
 }
 
 .column--atendimento {
   width: @wAtendimento;
   left: @oAtendimento;
+  font-size: 28px;
 }
 
 .column--paciente {
@@ -254,32 +259,47 @@ body {
   left: @oAltaHospitalar;
 }
 
+.column--meds {
+  background: rgba(32, 231, 0, 0.1);
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.column--medicamentos {
+  width: @wSuspensos + @wAgora + @wUrgente;
+  left: @oSuspensos;
+  background-color: rgba(74, 255, 0, 0.05);
+}
+
 .column--suspensos {
   width: @wSuspensos;
   left: @oSuspensos;
+  background-color: rgba(74, 255, 0, 0.05);
 }
 .column--agora {
   width: @wAgora;
   left: @oAgora;
+  background-color: rgba(74, 255, 0, 0.10);
 }
 
 .column--urgente {
   width: @wUrgente;
   left: @oUrgente;
+  background-color: rgba(74, 255, 0, 0.15);
 }
 
 .column--alergias {
   width: @wAlergia;
   left: @oAlergia;
   font-size: 20px;
-  line-height: 22px;
+  line-height: 24px;
   background: rgba(231, 111, 0, 0.1);
+  overflow: hidden;
 }
 
 .column--datas {
-  background: rgba(32, 231, 0, 0.1);
-  font-size: 15px;
-  line-height: 17px;
+  background: rgba(231, 0, 0, 0.1);
+  font-size: 28px;
 }
 
 .column--info {
@@ -297,6 +317,27 @@ body {
 	text-overflow: ellipsis;
 }
 
-.li--item::before {
-  content: '* ';
+.li--alergia::before {
+  content: '- ';
+}
+
+.li--suspensos::before {
+  content: 'SUSPENSO';
+  padding: 5px;
+  margin-right: 5px;
+  background-color: rgb(63, 74, 69);
+}
+
+.li--agora::before {
+  content: 'AGORA';
+  padding: 5px;
+  margin-right: 5px;
+  background-color: rgb(255, 115, 0);
+}
+
+.li--urgente::before {
+  content: 'URGENTE';
+  padding: 5px;
+  margin-right: 5px;
+  background-color: rgb(235, 0, 0);
 }

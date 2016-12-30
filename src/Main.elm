@@ -39,7 +39,7 @@ update message model =
         Scale newSize ->
             ( { model | scale = (toFloat newSize.width) / 1920.0 }, Cmd.none )
 
-        FetchCpam ->
+        FetchCpam newTime ->
             ( { model | loading = True }, fetchCpam )
 
         TickTime newTime ->
@@ -60,4 +60,6 @@ update message model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Time.every Time.second TickTime ]
+        [ Time.every Time.second TickTime
+        , Time.every (5 * Time.minute) FetchCpam
+        ]

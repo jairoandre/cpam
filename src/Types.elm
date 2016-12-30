@@ -26,7 +26,7 @@ initModel =
 type Msg
     = Loading
     | Scale Window.Size
-    | FetchCpam
+    | FetchCpam Time.Time
     | TickTime Time.Time
     | ReceiveCpam (Result Http.Error Cpam)
 

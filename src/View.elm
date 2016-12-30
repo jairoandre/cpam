@@ -13,31 +13,26 @@ customDiv oClass iClass elem =
         ]
 
 
-stringToSpan : String -> Html Msg
-stringToSpan str =
-    div [ class "li--item" ] [ text str ]
+stringToLi : String -> String -> Html Msg
+stringToLi liClass str =
+    div [ class liClass ] [ text str ]
 
 
-listToString : Int -> List String -> Html Msg
-listToString counter list =
+rollList : Int -> List a -> List a
+rollList counter list =
     let
         len =
             List.length list
     in
-        if len == 0 then
-            div [ class "ul--items" ] []
+        if len < 5 then
+            list
         else
-            let
-                h =
-                    List.take (counter % len) list
+            (List.drop (counter % len) list) ++ (List.take (counter % len) list)
 
-                t =
-                    List.drop (counter % len) list
 
-                newList =
-                    t ++ h
-            in
-                div [ class "ul--items" ] (List.map stringToSpan newList)
+cutDate : String -> String
+cutDate date =
+    String.slice 0 9 date
 
 
 pacienteToRow : Int -> Int -> Paciente -> Html Msg
@@ -48,17 +43,27 @@ pacienteToRow counter idx paciente =
                 " zebra"
             else
                 ""
+
+        medicamentos =
+            div [ class "ul--items" ]
+                (rollList counter <|
+                    (List.map (stringToLi "li--item li--suspensos") paciente.suspensos)
+                        ++ (List.map (stringToLi "li--item li--agora") paciente.agora)
+                        ++ (List.map (stringToLi "li--item li--urgente") paciente.urgente)
+                )
+
+        alergias =
+            div [ class "ul--items" ]
+                (rollList counter (List.map (stringToLi "li--item li--alergia") paciente.alergias))
     in
         div [ class ("row row--" ++ (toString idx) ++ zebra) ]
             [ customDiv "column column--info column--leito" "l-padd" <| text paciente.apto
             , customDiv "column column--info column--atendimento" "l-padd" <| text (toString paciente.atendimento)
             , customDiv "column column--info column--paciente" "l-padd" <| text paciente.nome
-            , customDiv "column column--altaMedica red" "t-center" <| text (String.slice 0 9 paciente.altaMedica)
-            , customDiv "column column--altaHospitalar red" "t-center" <| text (String.slice 0 9 paciente.altaHospitalar)
-            , customDiv "column column--datas column--suspensos" "l-padd tb-padd" <| listToString counter paciente.suspensos
-            , customDiv "column column--datas column--agora" "l-padd tb-padd" <| listToString counter paciente.agora
-            , customDiv "column column--datas column--urgente" "l-padd tb-padd" <| listToString counter paciente.urgente
-            , customDiv "column column--alergias" "l-padd tb-padd" <| listToString counter paciente.alergias
+            , customDiv "column column--datas column--altaMedica" "t-center" <| text (cutDate paciente.altaMedica)
+            , customDiv "column column--datas column--altaHospitalar" "t-center" <| span [ class "span--altaHospitalar" ] [ text (cutDate paciente.altaHospitalar) ]
+            , customDiv "column column--meds column--medicamentos" "l-padd tb-padd" <| medicamentos
+            , customDiv "column column--alergias" "l-padd tb-padd" <| alergias
             ]
 
 
@@ -117,10 +122,10 @@ view model =
                 , customDiv "h-header h-data-alta" "t-center" <| text "DATA ALTA"
                 , customDiv "h-header h-alta-medica" "t-center" <| text "MÉD."
                 , customDiv "h-header h-alta-hospitalar" "t-center" <| text "HOSP."
-                , customDiv "h-header h-medicamentos" "t-center" <| text "MEDICAMENTOS"
-                , customDiv "h-header h-suspensos" "l-padd" <| text "SUSPENSOS"
-                , customDiv "h-header h-agora" "l-padd" <| text "AGORA"
-                , customDiv "h-header h-urgente" "l-padd" <| text "URGENTE"
+                , customDiv "h-header h-medicamentos" "l-padd" <| text "MEDICAMENTOS"
+                  --, customDiv "h-header h-suspensos" "l-padd" <| text "SUSPENSOS"
+                  --, customDiv "h-header h-agora" "l-padd" <| text "AGORA"
+                  --, customDiv "h-header h-urgente" "l-padd" <| text "URGENTE"
                 , customDiv "h-header h-alergia" "l-padd" <| text "ALERGIA"
                 ]
             , div [ class "rows" ]
