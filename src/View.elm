@@ -3,6 +3,7 @@ module View exposing (..)
 import Html exposing (Html, text, div, span)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Time
 
 
 customDiv : String -> String -> Html Msg -> Html Msg
@@ -104,7 +105,11 @@ view model =
                             "Carregando..."
 
                         Just setor ->
-                            setor.title ++ " - " ++ model.date
+                            let
+                                timer =
+                                    (ceiling (5 * Time.minute / 1000)) - model.counter
+                            in
+                                setor.title ++ " - " ++ model.date ++ " - Próx. Atualização: " ++ (toString timer) ++ "s"
     in
         div
             [ class "content"
