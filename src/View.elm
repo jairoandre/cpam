@@ -107,7 +107,7 @@ view model =
                         Just setor ->
                             let
                                 timer =
-                                    (ceiling (5 * Time.minute / 1000)) - model.counter
+                                    (ceiling (3 * Time.minute / 1000)) - model.counter
                             in
                                 setor.title ++ " - " ++ model.date ++ " - Próx. Atualização: " ++ (toString timer) ++ "s"
     in
